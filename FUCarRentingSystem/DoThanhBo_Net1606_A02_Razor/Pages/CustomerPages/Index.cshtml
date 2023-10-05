@@ -1,0 +1,76 @@
+﻿@page
+@model DoThanhBo_Net1606_A02_Razor.Pages.CustomerPages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_UserLayout";
+}
+<h1>Renting Car</h1>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].CarName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].CarModelYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].ImportDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].RentPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].CarProducer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Car) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarModelYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormattedImportDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarProducer.ProducerName)
+            </td>
+                <td>
+                    <a asp-page="./CarRenting" asp-page-handler="Rent" asp-route-id="@item.Id">Rent</a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

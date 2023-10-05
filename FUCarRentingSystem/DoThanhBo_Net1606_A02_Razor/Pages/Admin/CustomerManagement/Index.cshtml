@@ -1,0 +1,82 @@
+﻿@page
+@model DoThanhBo_Net1606_A02_Razor.Pages.Admin.CustomerManagement.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Customer Management</h1>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Keyword" class="control-label">Search:</label>
+        <input asp-for="Keyword" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].Mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].Birthday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].IdentityCard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].LicenceNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].LicenceDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer[0].Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Customer) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormattedBirthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityCard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LicenceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormattedLicenceDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
